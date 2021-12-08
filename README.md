@@ -1,11 +1,11 @@
-# Planetly
-PingPong Throttling App
+# Planetly PingPong Throttling App
+
 # To Run on Dev, create a Virtual environment, then install dependencies in the requirements file
 # Run docker-compose up
 
 # Kubernetes deployement steps
 
-Steps to deploy the application to a Kubernetes cluster.
+# Steps to deploy the application to a Kubernetes cluster.
 
 - First step would be to create a k8s cluster : 
 - This can be done via many ways, either using the eks module from terraform or manually on Aws or via eksctl from weaveworks 
@@ -19,11 +19,9 @@ Steps to deploy the application to a Kubernetes cluster.
 - Run kubectl apply -f  deployment.yaml.
 - Run kubectl get pods after to see if it was successful
 
-This is what I‘d do, please let me know if it could be done better up to professional standards.
+This is what I‘d do for deployments, please let me know if it could be done better up to professional standards.
 
-My preferred deployment strategy especially if we running a Three(9s) SLA defined as our availability agreement would be the blue-green method. Here, a complete replica of the staging/environment is created and new image is deployed on this environment.
+My preferred deployment strategy especially if we running a Three(9s) SLA defined as our availability agreement would be the blue-green method. Here, a complete replica of the staging/environment is created and new image is deployed on this environment. After testing all is good, traffic is then shifted incrementally from the old(blue) to the new(green) environment, of course this seems a bit ambiguous with resources all over the place but I do believe it is a more safer way especially if something goes wrong, Traffic could be shifted back!
 
-After testing all went good, traffic is then shifted incrementally from the old(blue) to the new(green) environment, of course this seems a bit ambiguous with resources all over the place but I do believe it is a more safer way especially if something goes wrong, Traffic could be shifted back!
-
-Monitoring the service I believe could be done via aws cloudwatch with sns alerts and metrics defined with also actions for some alerts like new instance spin up if an alert has to do with an instance failing, also a big fan of prometheus so this too can be utilized! To measure both on network and application level.
+Monitoring the service I believe could be done via aws cloudwatch with sns alerts configured and metrics defined with also actions for some alerts like new instance spin up if an alert has to do with an instance possibly failing, also a big fan of prometheus so this too can be utilized! To measure both on network and application level.
 
