@@ -1,7 +1,7 @@
 # Planetly PingPong Throttling App
 
-# To Run on Dev, create a Virtual environment, then install dependencies in the requirements file
- Run docker-compose up
+To Run on Dev, create a Virtual environment, then install dependencies in the requirements file
+Run docker-compose up
 
 # Steps to deploy the application to a Kubernetes cluster.
 
